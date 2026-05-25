@@ -26,7 +26,7 @@ Hover briefly so the editorial hero, italic indigo pullquote, and the stats stri
 
 **[SHOW]** Open `lib/prisma.ts` in editor.
 
-> "Prisma 7 was a meaningful upgrade — they removed `url` from the datasource block and introduced an adapter model. I'm constructing a `PrismaPg` adapter explicitly with a connection string. The trade-off is more setup code per environment, but I get explicit pool sizing control."
+> "Prisma 7 was a meaningful upgrade — they removed `url` from the datasource block entirely. Connection URLs now live in `prisma.config.ts` for CLI commands, while the runtime uses a `PrismaPg` adapter constructed explicitly with the connection string. The trade-off is more setup code per environment, but I get explicit pool sizing control and a clean separation between migration config and runtime config."
 
 **[SHOW]** Open `app/colleges/[slug]/page.tsx`, point at `export const dynamic = "force-dynamic"` near the top.
 
