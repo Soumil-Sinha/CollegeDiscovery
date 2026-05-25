@@ -28,24 +28,24 @@ export default async function HomePage() {
   return (
     <div className="flex flex-col">
       {/* ── Editorial Hero ── */}
-      <section className="bg-stone-50 border-b border-gray-200/70 py-24 px-4 relative overflow-hidden">
+      <section className="bg-stone-50 dark:bg-gray-950 border-b border-gray-200/70 dark:border-gray-800 py-24 px-4 relative overflow-hidden">
         <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{
           backgroundImage: "radial-gradient(circle at 1px 1px, #000 1px, transparent 0)",
           backgroundSize: "32px 32px",
         }} />
         <div className="max-w-4xl mx-auto text-center relative">
-          <div className="inline-flex items-center gap-2 mb-8 text-xs font-medium tracking-widest text-gray-500 uppercase fade-in">
-            <span className="w-6 h-px bg-gray-400" />
+          <div className="inline-flex items-center gap-2 mb-8 text-xs font-medium tracking-widest text-gray-500 dark:text-gray-400 uppercase fade-in">
+            <span className="w-6 h-px bg-gray-400 dark:bg-gray-600" />
             India&apos;s College Discovery Platform
             <span className="w-6 h-px bg-gray-400" />
           </div>
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] text-gray-900 mb-6 fade-in-up">
+          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl leading-[1.05] text-gray-900 dark:text-gray-50 mb-6 fade-in-up">
             Find your perfect college,
             <br />
             <span className="italic text-indigo-700">with data-driven clarity.</span>
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto mb-10 leading-relaxed fade-in-up" style={{ animationDelay: "0.1s" }}>
-            Search, compare, and analyze <span className="numeric text-gray-900">{collegeCount}+</span> top engineering colleges across India.
+          <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed fade-in-up" style={{ animationDelay: "0.1s" }}>
+            Search, compare, and analyze <span className="numeric text-gray-900 dark:text-gray-100">{collegeCount}+</span> top engineering colleges across India.
             Real placement data, ROI calculator, smart recommendations.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center fade-in-up" style={{ animationDelay: "0.2s" }}>
@@ -58,7 +58,7 @@ export default async function HomePage() {
             </Link>
             <Link
               href="/compare"
-              className="press inline-flex items-center justify-center border border-gray-300 text-gray-700 font-medium px-7 py-3.5 rounded-full hover:bg-white hover:border-gray-400 transition"
+              className="press inline-flex items-center justify-center border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium px-7 py-3.5 rounded-full hover:bg-white dark:hover:bg-gray-800 hover:border-gray-400 transition"
             >
               Compare Colleges
             </Link>
@@ -67,9 +67,9 @@ export default async function HomePage() {
       </section>
 
       {/* ── Stats strip ── */}
-      <section className="bg-white border-b border-gray-200/70 py-10">
+      <section className="bg-white dark:bg-gray-900 border-b border-gray-200/70 dark:border-gray-800 py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-200">
+          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-200 dark:divide-gray-700">
             {[
               { label: "Colleges", value: `${collegeCount}+` },
               { label: "Avg Rating", value: `${avgRating.toFixed(1)}` },
@@ -77,8 +77,8 @@ export default async function HomePage() {
               { label: "Years of Data", value: "3" },
             ].map(({ label, value }, i) => (
               <div key={label} className="text-center px-3 fade-in-up" style={{ animationDelay: `${i * 0.05}s` }}>
-                <p className="numeric text-4xl text-gray-900">{value}</p>
-                <p className="text-xs text-gray-500 mt-1 tracking-wider uppercase">{label}</p>
+                <p className="numeric text-4xl text-gray-900 dark:text-gray-100">{value}</p>
+                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 tracking-wider uppercase">{label}</p>
               </div>
             ))}
           </div>
@@ -89,8 +89,8 @@ export default async function HomePage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="flex items-end justify-between mb-8">
           <div>
-            <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Curated Selection</p>
-            <h2 className="font-serif text-4xl text-gray-900">Top rated colleges</h2>
+            <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Curated Selection</p>
+            <h2 className="font-serif text-4xl text-gray-900 dark:text-gray-100">Top rated colleges</h2>
           </div>
           <Link href="/colleges" className="link-underline text-sm text-indigo-600 font-medium">
             View all
@@ -99,35 +99,35 @@ export default async function HomePage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 stagger-children">
           {topColleges.map((college) => (
             <Link key={college.id} href={`/colleges/${college.slug}`} className="group">
-              <div className="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md hover:border-gray-300 hover:-translate-y-0.5 transition-all duration-300">
+              <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-5 hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 hover:-translate-y-0.5 transition-all duration-300">
                 <div className="flex items-center gap-3 mb-4">
-                  <div className="w-12 h-12 rounded-lg bg-gray-50 border border-gray-100 overflow-hidden flex-shrink-0">
+                  <div className="w-12 h-12 rounded-lg bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 overflow-hidden flex-shrink-0">
                     {college.image ? (
                       <Image src={college.image} alt={college.name} width={48} height={48} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center font-serif text-xl text-gray-400">{college.name[0]}</div>
+                      <div className="w-full h-full flex items-center justify-center font-serif text-xl text-gray-400 dark:text-gray-600">{college.name[0]}</div>
                     )}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-gray-900 line-clamp-1 group-hover:text-indigo-700 transition">{college.name}</p>
-                    <p className="text-xs text-gray-500">{college.city}, {college.state}</p>
+                    <p className="font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition">{college.name}</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400">{college.city}, {college.state}</p>
                   </div>
-                  <span className="text-[10px] tracking-wider uppercase text-gray-500 border border-gray-200 px-1.5 py-0.5 rounded flex-shrink-0">
+                  <span className="text-[10px] tracking-wider uppercase text-gray-500 dark:text-gray-400 border border-gray-200 dark:border-gray-600 px-1.5 py-0.5 rounded flex-shrink-0">
                     {college.type}
                   </span>
                 </div>
-                <div className="flex justify-between text-sm border-t border-gray-100 pt-4">
+                <div className="flex justify-between text-sm border-t border-gray-100 dark:border-gray-700 pt-4">
                   <div>
-                    <p className="text-xs text-gray-400 tracking-wider uppercase">Fees</p>
-                    <p className="numeric text-base text-gray-900 mt-0.5">{formatFees(college.totalFees)}</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500 tracking-wider uppercase">Fees</p>
+                    <p className="numeric text-base text-gray-900 dark:text-gray-100 mt-0.5">{formatFees(college.totalFees)}</p>
                   </div>
                   <div className="text-center">
-                    <p className="text-xs text-gray-400 tracking-wider uppercase">Rating</p>
-                    <p className="numeric text-base text-gray-900 mt-0.5">{college.rating.toFixed(1)}</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500 tracking-wider uppercase">Rating</p>
+                    <p className="numeric text-base text-gray-900 dark:text-gray-100 mt-0.5">{college.rating.toFixed(1)}</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs text-gray-400 tracking-wider uppercase">Avg CTC</p>
-                    <p className="numeric text-base text-gray-900 mt-0.5">
+                    <p className="text-xs text-gray-400 dark:text-gray-500 tracking-wider uppercase">Avg CTC</p>
+                    <p className="numeric text-base text-gray-900 dark:text-gray-100 mt-0.5">
                       {college.placementStats[0] ? formatSalary(college.placementStats[0].avgSalary) : "N/A"}
                     </p>
                   </div>
@@ -139,13 +139,13 @@ export default async function HomePage() {
       </section>
 
       {/* ── Features ── */}
-      <section className="bg-white border-t border-gray-200/70 py-16">
+      <section className="bg-white dark:bg-gray-900 border-t border-gray-200/70 dark:border-gray-800 py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">What You Get</p>
-            <h2 className="font-serif text-4xl text-gray-900">Why CollegeDiscovery</h2>
+            <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">What You Get</p>
+            <h2 className="font-serif text-4xl text-gray-900 dark:text-gray-100">Why CollegeDiscovery</h2>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-xl overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 dark:bg-gray-700 border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden">
             {[
               {
                 icon: (
@@ -184,12 +184,12 @@ export default async function HomePage() {
                 desc: "Auto-computed badges: Top ROI, Best Value, Rising Placements.",
               },
             ].map(({ icon, title, desc }) => (
-              <div key={title} className="bg-white p-6 hover:bg-stone-50 transition-colors duration-300 group">
-                <div className="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
+              <div key={title} className="bg-white dark:bg-gray-900 p-6 hover:bg-stone-50 dark:hover:bg-gray-800 transition-colors duration-300 group">
+                <div className="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform duration-300">
                   {icon}
                 </div>
-                <h3 className="font-serif text-xl text-gray-900 mb-1.5">{title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{desc}</p>
+                <h3 className="font-serif text-xl text-gray-900 dark:text-gray-100 mb-1.5">{title}</h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>

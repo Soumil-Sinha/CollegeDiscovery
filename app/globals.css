@@ -1,8 +1,16 @@
 @import "tailwindcss";
 
+/* Class-based dark mode for next-themes */
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root {
   --background: #fafaf9;
   --foreground: #171717;
+}
+
+.dark {
+  --background: #0c0c0e;
+  --foreground: #f0f0f0;
 }
 
 @theme inline {
@@ -128,6 +136,9 @@ body {
   border: 0;
   height: 1px;
   background: linear-gradient(to right, transparent, #e5e7eb, transparent);
+}
+.dark .editorial-rule {
+  background: linear-gradient(to right, transparent, #374151, transparent);
 }
 
 /* Respect reduced motion */

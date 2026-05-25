@@ -25,12 +25,12 @@ export default async function CollegesPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
-          <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">Discover</p>
-          <h1 className="font-serif text-4xl text-gray-900">Explore colleges</h1>
-          <p className="text-gray-500 text-sm mt-2">
+          <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">Discover</p>
+          <h1 className="font-serif text-4xl text-gray-900 dark:text-white">Explore colleges</h1>
+          <p className="text-gray-500 dark:text-gray-400 text-sm mt-2">
             Discover and compare top engineering colleges across India.
           </p>
         </div>

@@ -93,7 +93,7 @@ export function CollegeListClient({ savedCollegeIds = [] }: CollegeListClientPro
 
   if (colleges.length === 0) {
     return (
-      <div className="text-center py-16 text-gray-500">
+      <div className="text-center py-16 text-gray-500 dark:text-gray-400">
         <p className="text-lg font-medium mb-1">No colleges found</p>
         <p className="text-sm">Try adjusting your filters</p>
       </div>
@@ -103,13 +103,13 @@ export function CollegeListClient({ savedCollegeIds = [] }: CollegeListClientPro
   return (
     <div className="space-y-6">
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">
-          <span className="font-medium text-gray-900">{meta?.total ?? 0}</span> colleges found
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          <span className="font-medium text-gray-900 dark:text-gray-100">{meta?.total ?? 0}</span> colleges found
         </p>
         {compareIds.length >= 2 && (
           <a
             href={`/compare?ids=${compareIds.join(",")}`}
-            className="text-sm font-medium text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 px-3 py-1.5 rounded-lg transition"
+            className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 bg-indigo-50 dark:bg-indigo-950 hover:bg-indigo-100 dark:hover:bg-indigo-900 px-3 py-1.5 rounded-lg transition"
           >
             Compare {compareIds.length} colleges →
           </a>
@@ -163,18 +163,18 @@ function PaginationControls({ currentPage, totalPages }: { currentPage: number; 
     <>
       <a
         href={pageHref(Math.max(1, currentPage - 1))}
-        className={`px-3 py-1.5 rounded-lg text-sm border transition ${currentPage === 1 ? "opacity-50 pointer-events-none border-gray-200 text-gray-400" : "border-gray-300 text-gray-700 hover:bg-gray-50"}`}
+        className={`px-3 py-1.5 rounded-lg text-sm border transition ${currentPage === 1 ? "opacity-50 pointer-events-none border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500" : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"}`}
       >
         ← Prev
       </a>
       {pages.map((p, i) =>
         p === "..." ? (
-          <span key={`ellipsis-${i}`} className="px-2 text-gray-400">…</span>
+          <span key={`ellipsis-${i}`} className="px-2 text-gray-400 dark:text-gray-500">…</span>
         ) : (
           <a
             key={p}
             href={pageHref(p)}
-            className={`px-3 py-1.5 rounded-lg text-sm border transition ${p === currentPage ? "bg-indigo-600 text-white border-indigo-600" : "border-gray-300 text-gray-700 hover:bg-gray-50"}`}
+            className={`px-3 py-1.5 rounded-lg text-sm border transition ${p === currentPage ? "bg-indigo-600 text-white border-indigo-600" : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"}`}
           >
             {p}
           </a>
@@ -182,7 +182,7 @@ function PaginationControls({ currentPage, totalPages }: { currentPage: number; 
       )}
       <a
         href={pageHref(Math.min(totalPages, currentPage + 1))}
-        className={`px-3 py-1.5 rounded-lg text-sm border transition ${currentPage === totalPages ? "opacity-50 pointer-events-none border-gray-200 text-gray-400" : "border-gray-300 text-gray-700 hover:bg-gray-50"}`}
+        className={`px-3 py-1.5 rounded-lg text-sm border transition ${currentPage === totalPages ? "opacity-50 pointer-events-none border-gray-200 dark:border-gray-700 text-gray-400 dark:text-gray-500" : "border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800"}`}
       >
         Next →
       </a>

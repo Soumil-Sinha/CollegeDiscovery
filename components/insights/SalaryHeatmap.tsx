@@ -91,13 +91,13 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
     <div className="space-y-6">
       {/* Controls */}
       <div className="flex items-center gap-3 flex-wrap">
-        <div className="flex rounded-lg border border-gray-200 overflow-hidden text-sm bg-white">
+        <div className="flex rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden text-sm bg-white dark:bg-gray-900">
           {(["map", "rank"] as const).map((v) => (
             <button
               key={v}
               onClick={() => setView(v)}
               className={`press px-4 py-2 font-medium transition-all duration-200 ${
-                view === v ? "bg-gray-900 text-white" : "text-gray-600 hover:bg-gray-50"
+                view === v ? "bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900" : "text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-800"
               }`}
             >
               {v === "map" ? "India Map" : "Ranked List"}
@@ -105,11 +105,11 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
           ))}
         </div>
         <div className="flex items-center gap-2 ml-1">
-          <span className="text-xs text-gray-400 tracking-wider uppercase">Low</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500 tracking-wider uppercase">Low</span>
           {["#e0e7ff", "#a5b4fc", "#6366f1", "#4338ca", "#312e81"].map((c) => (
             <div key={c} className="w-5 h-3.5 rounded-sm" style={{ background: c }} />
           ))}
-          <span className="text-xs text-gray-400 tracking-wider uppercase">High</span>
+          <span className="text-xs text-gray-400 dark:text-gray-500 tracking-wider uppercase">High</span>
         </div>
       </div>
 
@@ -117,7 +117,7 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
         /* ── India Map ── */
         <div
           ref={mapContainerRef}
-          className="relative bg-white rounded-2xl border border-gray-200 overflow-hidden select-none fade-in"
+          className="relative bg-white dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-700 overflow-hidden select-none fade-in"
         >
           <ComposableMap
             projection="geoMercator"
@@ -168,10 +168,10 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
               className="absolute z-20 pointer-events-none"
               style={{ left: tooltipPos.x, top: tooltipPos.y, width: TOOLTIP_W }}
             >
-              <div className="tooltip-pop bg-white rounded-xl border border-gray-200 shadow-xl p-3.5 text-left">
+              <div className="tooltip-pop bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 shadow-xl p-3.5 text-left">
                 <div className="flex items-start justify-between gap-2 mb-2.5">
                   <div>
-                    <p className="text-sm font-semibold text-gray-900 leading-tight">{hovered.state}</p>
+                    <p className="text-sm font-semibold text-gray-900 dark:text-gray-100 leading-tight">{hovered.state}</p>
                     <p
                       className="numeric text-2xl mt-0.5"
                       style={{ color: salaryColor(hovered.avgSalary, min, max) === "#e0e7ff" ? "#6366f1" : salaryColor(hovered.avgSalary, min, max) }}
@@ -180,14 +180,14 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
                     </p>
                   </div>
                   <div className="text-right flex-shrink-0">
-                    <p className="text-[10px] text-gray-400 tracking-wider uppercase">Avg salary</p>
-                    <p className="text-xs font-semibold text-gray-600 mt-0.5">
+                    <p className="text-[10px] text-gray-400 dark:text-gray-500 tracking-wider uppercase">Avg salary</p>
+                    <p className="text-xs font-semibold text-gray-600 dark:text-gray-300 mt-0.5">
                       {hovered.collegeCount} college{hovered.collegeCount > 1 ? "s" : ""}
                     </p>
                   </div>
                 </div>
 
-                <div className="w-full bg-gray-100 rounded-full h-1.5 mb-2.5 overflow-hidden">
+                <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 mb-2.5 overflow-hidden">
                   <div
                     className="h-1.5 rounded-full transition-all duration-500"
                     style={{
@@ -201,7 +201,7 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
                   {hovered.types.map((t) => (
                     <span
                       key={t}
-                      className="text-[10px] tracking-wider uppercase px-1.5 py-0.5 rounded font-medium bg-indigo-50 text-indigo-700"
+                      className="text-[10px] tracking-wider uppercase px-1.5 py-0.5 rounded font-medium bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300"
                     >
                       {t}
                     </span>
@@ -211,7 +211,7 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
                 {hovered.topColleges.length > 0 && (
                   <ul className="space-y-0.5">
                     {hovered.topColleges.slice(0, 2).map((c) => (
-                      <li key={c} className="text-xs text-gray-500 truncate flex items-center gap-1">
+                      <li key={c} className="text-xs text-gray-500 dark:text-gray-400 truncate flex items-center gap-1">
                         <span className="w-1 h-1 rounded-full bg-indigo-300 flex-shrink-0" />
                         {c}
                       </li>
@@ -222,7 +222,7 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
             </div>
           )}
 
-          <p className="text-xs text-gray-400 text-center pb-3 pt-1 tracking-wide">
+          <p className="text-xs text-gray-400 dark:text-gray-500 text-center pb-3 pt-1 tracking-wide">
             States in light grey have no colleges in the database yet
           </p>
         </div>
@@ -237,13 +237,13 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
               <button
                 key={d.state}
                 onClick={() => setModalState({ data: d, rank: i + 1 })}
-                className="press group bg-white rounded-xl border border-gray-200 overflow-hidden text-left hover:shadow-md hover:border-gray-300 transition-all duration-300"
+                className="press group bg-white dark:bg-gray-900 rounded-xl border border-gray-200 dark:border-gray-700 overflow-hidden text-left hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300"
               >
                 <div className="px-4 py-3.5 flex items-center gap-3">
-                  <span className="numeric text-2xl text-gray-300 w-9 flex-shrink-0 group-hover:text-gray-500 transition">
+                  <span className="numeric text-2xl text-gray-300 dark:text-gray-600 w-9 flex-shrink-0 group-hover:text-gray-500 dark:group-hover:text-gray-400 transition">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex-1 font-semibold text-gray-900 text-sm group-hover:text-indigo-700 transition">{d.state}</span>
+                  <span className="flex-1 font-semibold text-gray-900 dark:text-gray-100 text-sm group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition">{d.state}</span>
                   <div className="text-right flex-shrink-0">
                     <p
                       className="numeric text-lg"
@@ -251,12 +251,12 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
                     >
                       {fmt(d.avgSalary)}
                     </p>
-                    <p className="text-[10px] text-gray-400 tracking-wider uppercase">
+                    <p className="text-[10px] text-gray-400 dark:text-gray-500 tracking-wider uppercase">
                       {d.collegeCount} college{d.collegeCount > 1 ? "s" : ""}
                     </p>
                   </div>
                   <svg
-                    className="w-4 h-4 text-gray-300 flex-shrink-0 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all duration-300"
+                    className="w-4 h-4 text-gray-300 dark:text-gray-600 flex-shrink-0 group-hover:text-indigo-500 dark:group-hover:text-indigo-400 group-hover:translate-x-0.5 transition-all duration-300"
                     fill="none" viewBox="0 0 24 24" stroke="currentColor"
                   >
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -264,7 +264,7 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
                 </div>
 
                 <div className="px-4 pb-3">
-                  <div className="w-full bg-gray-100 rounded-full h-1 overflow-hidden">
+                  <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1 overflow-hidden">
                     <div
                       className="h-1 rounded-full transition-all duration-700"
                       style={{ width: `${ratio * 100}%`, background: fill }}
@@ -285,7 +285,7 @@ export function SalaryHeatmap({ data }: { data: StateData[] }) {
           role="dialog"
           aria-modal="true"
         >
-          <div className="absolute inset-0 bg-gray-900/50 backdrop-blur-sm" />
+          <div className="absolute inset-0 bg-gray-900/50 dark:bg-gray-950/70 backdrop-blur-sm" />
           <StateDetailModal
             state={modalState.data}
             rank={modalState.rank}
@@ -318,7 +318,7 @@ function StateDetailModal({
 
   return (
     <div
-      className="relative bg-white rounded-2xl shadow-2xl w-full max-w-md modal-pop overflow-hidden"
+      className="relative bg-white dark:bg-gray-900 rounded-2xl shadow-2xl w-full max-w-md modal-pop overflow-hidden"
       onClick={(e) => e.stopPropagation()}
     >
       {/* Top color bar */}
@@ -327,7 +327,7 @@ function StateDetailModal({
       {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:bg-gray-100 hover:text-gray-700 transition press"
+        className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center text-gray-400 dark:text-gray-500 hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-200 transition press"
         aria-label="Close"
       >
         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2}>
@@ -337,12 +337,12 @@ function StateDetailModal({
 
       <div className="p-6">
         {/* Rank */}
-        <p className="text-xs uppercase tracking-widest text-gray-400 mb-2">
-          Rank · <span className="numeric text-gray-700">#{rank}</span> nationally
+        <p className="text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-2">
+          Rank · <span className="numeric text-gray-700 dark:text-gray-300">#{rank}</span> nationally
         </p>
 
         {/* State name */}
-        <h2 className="font-serif text-3xl text-gray-900 leading-tight mb-4">{state.state}</h2>
+        <h2 className="font-serif text-3xl text-gray-900 dark:text-white leading-tight mb-4">{state.state}</h2>
 
         {/* Salary headline */}
         <div className="flex items-baseline gap-3 mb-4">
@@ -352,11 +352,11 @@ function StateDetailModal({
           >
             {fmt(state.avgSalary)}
           </p>
-          <p className="text-xs text-gray-500 tracking-wider uppercase">Avg salary</p>
+          <p className="text-xs text-gray-500 dark:text-gray-400 tracking-wider uppercase">Avg salary</p>
         </div>
 
         {/* Progress bar */}
-        <div className="w-full bg-gray-100 rounded-full h-1.5 mb-6 overflow-hidden">
+        <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-1.5 mb-6 overflow-hidden">
           <div
             className="h-1.5 rounded-full"
             style={{
@@ -368,13 +368,13 @@ function StateDetailModal({
         </div>
 
         {/* Meta row */}
-        <div className="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-gray-100">
+        <div className="grid grid-cols-2 gap-4 mb-6 pb-6 border-b border-gray-100 dark:border-gray-800">
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Colleges</p>
-            <p className="numeric text-2xl text-gray-900">{state.collegeCount}</p>
+            <p className="text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">Colleges</p>
+            <p className="numeric text-2xl text-gray-900 dark:text-gray-100">{state.collegeCount}</p>
           </div>
           <div>
-            <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">Institute types</p>
+            <p className="text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-1">Institute types</p>
             <div className="flex flex-wrap gap-1 mt-1.5">
               {state.types.map((t) => (
                 <span
@@ -392,10 +392,10 @@ function StateDetailModal({
         {/* Top colleges */}
         {state.topColleges.length > 0 && (
           <div className="mb-6">
-            <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-3">Top Colleges</p>
+            <p className="text-[10px] uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-3">Top Colleges</p>
             <ul className="space-y-2 stagger-children">
               {state.topColleges.map((c) => (
-                <li key={c} className="text-sm text-gray-700 flex items-center gap-2">
+                <li key={c} className="text-sm text-gray-700 dark:text-gray-200 flex items-center gap-2">
                   <span className="w-1 h-1 rounded-full flex-shrink-0" style={{ background: fill }} />
                   {c}
                 </li>

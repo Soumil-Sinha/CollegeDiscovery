@@ -102,13 +102,13 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
   }
 
   const typeBorderColors: Record<string, string> = {
-    IIT: "text-red-700 border-red-200/60 bg-red-50/60",
-    NIT: "text-blue-700 border-blue-200/60 bg-blue-50/60",
-    IIIT: "text-violet-700 border-violet-200/60 bg-violet-50/60",
-    DEEMED: "text-orange-700 border-orange-200/60 bg-orange-50/60",
-    PRIVATE: "text-teal-700 border-teal-200/60 bg-teal-50/60",
-    STATE: "text-emerald-700 border-emerald-200/60 bg-emerald-50/60",
-    CENTRAL: "text-indigo-700 border-indigo-200/60 bg-indigo-50/60",
+    IIT: "text-red-700 dark:text-red-400 border-red-200/60 dark:border-red-700/50 bg-red-50/60 dark:bg-red-900/20",
+    NIT: "text-blue-700 dark:text-blue-400 border-blue-200/60 dark:border-blue-700/50 bg-blue-50/60 dark:bg-blue-900/20",
+    IIIT: "text-violet-700 dark:text-violet-400 border-violet-200/60 dark:border-violet-700/50 bg-violet-50/60 dark:bg-violet-900/20",
+    DEEMED: "text-orange-700 dark:text-orange-400 border-orange-200/60 dark:border-orange-700/50 bg-orange-50/60 dark:bg-orange-900/20",
+    PRIVATE: "text-teal-700 dark:text-teal-400 border-teal-200/60 dark:border-teal-700/50 bg-teal-50/60 dark:bg-teal-900/20",
+    STATE: "text-emerald-700 dark:text-emerald-400 border-emerald-200/60 dark:border-emerald-700/50 bg-emerald-50/60 dark:bg-emerald-900/20",
+    CENTRAL: "text-indigo-700 dark:text-indigo-400 border-indigo-200/60 dark:border-indigo-700/50 bg-indigo-50/60 dark:bg-indigo-900/20",
   }
 
   return (
@@ -116,7 +116,7 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
       <Link href={`/colleges/${college.slug}`} className="flex flex-col h-full p-5 gap-4">
         {/* Header */}
         <div className="flex gap-3">
-          <div className="w-14 h-14 rounded-lg overflow-hidden bg-gray-50 border border-gray-100 flex-shrink-0">
+          <div className="w-14 h-14 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 flex-shrink-0">
             {college.image ? (
               <Image
                 src={college.image}
@@ -126,14 +126,14 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             ) : (
-              <div className="w-full h-full flex items-center justify-center font-serif text-2xl text-gray-300">
+              <div className="w-full h-full flex items-center justify-center font-serif text-2xl text-gray-300 dark:text-gray-600">
                 {college.name[0]}
               </div>
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <h3 className="font-semibold text-gray-900 text-sm leading-tight line-clamp-2 group-hover:text-indigo-700 transition-colors">{college.name}</h3>
-            <p className="text-xs text-gray-500 mt-0.5 flex items-center gap-1">
+            <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm leading-tight line-clamp-2 group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">{college.name}</h3>
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-0.5 flex items-center gap-1">
               <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
@@ -156,14 +156,14 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
           {[1, 2, 3, 4, 5].map((star) => (
             <svg
               key={star}
-              className={cn("w-3.5 h-3.5", star <= Math.round(college.rating) ? "text-amber-400" : "text-gray-200")}
+              className={cn("w-3.5 h-3.5", star <= Math.round(college.rating) ? "text-amber-400" : "text-gray-200 dark:text-gray-700")}
               fill="currentColor"
               viewBox="0 0 20 20"
             >
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
             </svg>
           ))}
-          <span className="text-xs font-medium text-gray-700 ml-0.5 numeric">{college.rating.toFixed(1)}</span>
+          <span className="text-xs font-medium text-gray-700 dark:text-gray-300 ml-0.5 numeric">{college.rating.toFixed(1)}</span>
         </div>
 
         {/* Insight Badges */}
@@ -181,20 +181,20 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
         )}
 
         {/* Stats */}
-        <div className="grid grid-cols-3 gap-2 mt-auto pt-2 border-t border-gray-100">
+        <div className="grid grid-cols-3 gap-2 mt-auto pt-2 border-t border-gray-100 dark:border-gray-700">
           <div className="text-center">
-            <p className="text-[10px] text-gray-400 tracking-wider uppercase">Fees</p>
-            <p className="numeric text-base text-gray-900 mt-0.5">{formatFees(college.totalFees)}</p>
+            <p className="text-[10px] text-gray-400 dark:text-gray-500 tracking-wider uppercase">Fees</p>
+            <p className="numeric text-base text-gray-900 dark:text-gray-100 mt-0.5">{formatFees(college.totalFees)}</p>
           </div>
-          <div className="text-center border-x border-gray-100">
-            <p className="text-[10px] text-gray-400 tracking-wider uppercase">Avg CTC</p>
-            <p className="numeric text-base text-gray-900 mt-0.5">
+          <div className="text-center border-x border-gray-100 dark:border-gray-700">
+            <p className="text-[10px] text-gray-400 dark:text-gray-500 tracking-wider uppercase">Avg CTC</p>
+            <p className="numeric text-base text-gray-900 dark:text-gray-100 mt-0.5">
               {latestStat ? formatSalary(latestStat.avgSalary) : "N/A"}
             </p>
           </div>
           <div className="text-center">
-            <p className="text-[10px] text-gray-400 tracking-wider uppercase">Placed</p>
-            <p className="numeric text-base text-gray-900 mt-0.5">
+            <p className="text-[10px] text-gray-400 dark:text-gray-500 tracking-wider uppercase">Placed</p>
+            <p className="numeric text-base text-gray-900 dark:text-gray-100 mt-0.5">
               {latestStat ? `${latestStat.placementRate}%` : "N/A"}
             </p>
           </div>
@@ -202,15 +202,15 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
       </Link>
 
       {/* Actions */}
-      <div className="flex items-center justify-between px-5 py-3 border-t border-gray-100 bg-stone-50/40 rounded-b-xl">
+      <div className="flex items-center justify-between px-5 py-3 border-t border-gray-100 dark:border-gray-700 bg-stone-50/40 dark:bg-gray-800/30 rounded-b-xl">
         {onToggleCompare && (
           <button
             onClick={(e) => { e.preventDefault(); onToggleCompare(college.id) }}
             className={cn(
               "press text-xs font-medium px-2.5 py-1 rounded-md transition-all duration-200 inline-flex items-center gap-1",
               isInCompare
-                ? "bg-indigo-100 text-indigo-700"
-                : "text-gray-500 hover:bg-gray-200"
+                ? "bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400"
+                : "text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
             )}
           >
             {isInCompare ? (
@@ -229,7 +229,7 @@ export function CollegeCard({ college, savedIds, onToggleSave, compareIds, onTog
             disabled={isSaving}
             className={cn(
               "press ml-auto text-xs font-medium px-2.5 py-1 rounded-md transition-all duration-200 inline-flex items-center gap-1",
-              isSaved ? "text-rose-600 hover:bg-rose-50" : "text-gray-500 hover:bg-gray-200"
+              isSaved ? "text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20" : "text-gray-500 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700"
             )}
           >
             <svg
