@@ -59,9 +59,9 @@ export function CollegeFilters() {
   }))
 
   return (
-    <div className="bg-white border border-gray-200 rounded-xl p-4 space-y-4">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-xl p-4 space-y-4">
       <div className="flex items-center justify-between">
-        <h3 className="font-semibold text-gray-900 text-sm">Filters</h3>
+        <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">Filters</h3>
         {hasFilters && (
           <Button variant="ghost" size="sm" onClick={clearFilters} className="text-xs text-indigo-600">
             Clear all
