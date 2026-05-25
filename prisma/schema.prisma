@@ -1,0 +1,181 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String?
+  email         String         @unique
+  emailVerified DateTime?
+  image         String?
+  password      String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  accounts      Account[]
+  sessions      Session[]
+  savedColleges      SavedCollege[]
+  reviews            Review[]
+  admissionDeadlines AdmissionDeadline[]
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model College {
+  id            String          @id @default(cuid())
+  name          String
+  slug          String          @unique
+  location      String
+  city          String
+  state         String
+  type          CollegeType
+  established   Int
+  totalFees     Int
+  rating        Float
+  description   String
+  website       String?
+  image         String?
+  naacGrade     String?
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  courses              Course[]
+  placementStats       PlacementStat[]
+  branchPlacementStats BranchPlacementStat[]
+  reviews              Review[]
+  savedBy              SavedCollege[]
+  admissionDeadlines   AdmissionDeadline[]
+
+  @@index([location])
+  @@index([type])
+  @@index([rating])
+  @@index([totalFees])
+}
+
+model Course {
+  id        String  @id @default(cuid())
+  collegeId String
+  name      String
+  duration  Int
+  fees      Int
+  seats     Int
+  college   College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId])
+}
+
+model PlacementStat {
+  id              String   @id @default(cuid())
+  collegeId       String
+  year            Int
+  avgSalary       Int
+  highestSalary   Int
+  placementRate   Float
+  topRecruiters   String[]
+  medianSalary    Int
+  college         College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, year])
+  @@index([collegeId])
+}
+
+model Review {
+  id        String   @id @default(cuid())
+  userId    String
+  collegeId String
+  rating    Int
+  content   String
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@index([collegeId])
+  @@index([userId])
+}
+
+model SavedCollege {
+  id        String   @id @default(cuid())
+  userId    String
+  collegeId String
+  savedAt   DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  college   College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, collegeId])
+  @@index([userId])
+}
+
+model BranchPlacementStat {
+  id            String  @id @default(cuid())
+  collegeId     String
+  branch        String
+  year          Int
+  avgSalary     Int
+  highestSalary Int
+  placementRate Float
+  college       College @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@unique([collegeId, branch, year])
+  @@index([collegeId])
+}
+
+model AdmissionDeadline {
+  id           String   @id @default(cuid())
+  userId       String
+  collegeId    String
+  deadlineType String
+  deadlineDate DateTime
+  note         String?
+  isCompleted  Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  college      College  @relation(fields: [collegeId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([collegeId])
+}
+
+enum CollegeType {
+  IIT
+  NIT
+  IIIT
+  PRIVATE
+  DEEMED
+  CENTRAL
+  STATE
+}
